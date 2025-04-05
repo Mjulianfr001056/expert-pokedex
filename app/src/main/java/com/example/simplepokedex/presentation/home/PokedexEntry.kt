@@ -24,20 +24,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.example.simplepokedex.util.PokemonMapper
-import com.example.simplepokedex.data.stub.PokemonList
-import com.example.simplepokedex.domain.model.Pokemon
+import com.example.library.networking.stub.PokemonList
+import com.example.library.core.domain.model.Pokemon
 import com.example.simplepokedex.presentation.TypeBadge
 import com.example.simplepokedex.ui.theme.SimplePokedexTheme
 
-private class PokedexEntryParamaterProvider : PreviewParameterProvider<Pokemon> {
-    override val values: Sequence<Pokemon> = PokemonList.list.map {
+private class PokedexEntryParamaterProvider : PreviewParameterProvider<com.example.library.core.domain.model.Pokemon> {
+    override val values: Sequence<com.example.library.core.domain.model.Pokemon> = PokemonList.list.map {
         PokemonMapper.toDomain(it)
     }.asSequence()
 }
 
 @Composable
 fun PokedexEntry(
-    pokemon: Pokemon,
+    pokemon: com.example.library.core.domain.model.Pokemon,
     modifier: Modifier = Modifier,
     onClick : () -> Unit = {}
 ) {
@@ -111,7 +111,7 @@ fun PokedexEntry(
 @Composable
 @Preview
 private fun PokedexEntryPreview(
-    @PreviewParameter(PokedexEntryParamaterProvider::class) pokemon: Pokemon
+    @PreviewParameter(PokedexEntryParamaterProvider::class) pokemon: com.example.library.core.domain.model.Pokemon
 ) {
     SimplePokedexTheme {
         PokedexEntry(pokemon = pokemon)

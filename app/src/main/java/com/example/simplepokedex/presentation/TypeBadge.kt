@@ -17,9 +17,9 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.simplepokedex.data.stub.Types
-import com.example.simplepokedex.data.stub.getBadgeColor
-import com.example.simplepokedex.data.stub.getTextColor
+import com.example.library.core.domain.model.Types
+import com.example.library.core.domain.model.getBadgeColor
+import com.example.library.core.domain.model.getTextColor
 import com.example.simplepokedex.ui.theme.SimplePokedexTheme
 
 private class TypeBadgeParamaterProvider : PreviewParameterProvider<Types> {

@@ -1,11 +1,7 @@
 package com.example.simplepokedex.di
 
-import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.example.simplepokedex.data.PokemonRepository
 import com.example.simplepokedex.data.PokemonRepositoryImpl
-import com.example.simplepokedex.data.local.PokedexDatabase
-import com.example.simplepokedex.data.local.PokemonDao
 import com.example.simplepokedex.domain.usecase.FavoritePokemonUseCase
 import com.example.simplepokedex.domain.usecase.FavoritePokemonUseCaseImpl
 import com.example.simplepokedex.domain.usecase.PokemonUseCase
@@ -19,24 +15,16 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    singleOf(::PokemonRepositoryImpl).bind<PokemonRepository>()
-
-    single<PokedexDatabase> {
-        Room.databaseBuilder(get(),
-            PokedexDatabase::class.java,
-            "pokedex_database")
-            .build()
-    }
-
-    single<PokemonDao> {
-        val database = get<PokedexDatabase>()
-        database.pokemonDao()
-    }
+    singleOf(::PokemonRepositoryImpl)
+        .bind<PokemonRepository>()
 }
 
 val useCaseModule = module {
-    singleOf(::PokemonUseCaseImpl).bind<PokemonUseCase>()
-    singleOf(::FavoritePokemonUseCaseImpl).bind<FavoritePokemonUseCase>()
+    singleOf(::PokemonUseCaseImpl)
+        .bind<PokemonUseCase>()
+
+    singleOf(::FavoritePokemonUseCaseImpl)
+        .bind<FavoritePokemonUseCase>()
 }
 
 val viewModelModule = module {

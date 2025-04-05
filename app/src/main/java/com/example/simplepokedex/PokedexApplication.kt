@@ -1,6 +1,7 @@
 package com.example.simplepokedex
 
 import android.app.Application
+import com.example.library.persistent.di.persistentModule
 import com.example.simplepokedex.di.repositoryModule
 import com.example.simplepokedex.di.useCaseModule
 import com.example.simplepokedex.di.viewModelModule
@@ -15,7 +16,8 @@ class PokedexApplication : Application() {
             modules(
                 repositoryModule,
                 useCaseModule,
-                viewModelModule
+                viewModelModule,
+                persistentModule
             )
         }
     }

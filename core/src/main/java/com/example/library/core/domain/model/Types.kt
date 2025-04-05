@@ -1,4 +1,4 @@
-package com.example.simplepokedex.data.stub
+package com.example.library.core.domain.model
 
 import androidx.compose.ui.graphics.Color
 

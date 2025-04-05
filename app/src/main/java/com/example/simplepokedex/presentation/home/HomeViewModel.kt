@@ -4,7 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.simplepokedex.domain.model.Pokemon
+import com.example.library.core.domain.model.Pokemon
 import com.example.simplepokedex.domain.usecase.PokemonUseCase
 import com.example.simplepokedex.ui.UiState
 import com.example.simplepokedex.util.onError
@@ -18,7 +18,7 @@ import org.lighthousegames.logging.logging
 class HomeViewModel(
     private val pokemonUseCase: PokemonUseCase
 ) : ViewModel() {
-    private val _pokemonList: MutableStateFlow<UiState<List<Pokemon>>> = MutableStateFlow(UiState.Loading)
+    private val _pokemonList: MutableStateFlow<UiState<List<com.example.library.core.domain.model.Pokemon>>> = MutableStateFlow(UiState.Loading)
     val pokemonList = _pokemonList.asStateFlow()
 
     private val _query = mutableStateOf("")

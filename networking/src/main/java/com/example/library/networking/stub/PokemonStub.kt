@@ -1,13 +1,13 @@
-package com.example.simplepokedex.data.stub
+package com.example.library.networking.stub
 
 data class PokemonStub(
     val id: Int,
     val name: String,
     val imageUrl: String,
     val description: String,
-    val primaryType: Types,
-    val secondaryType: Types?,
-    val weaknesses: List<Types>,
+    val primaryType: com.example.library.core.domain.model.Types,
+    val secondaryType: com.example.library.core.domain.model.Types?,
+    val weaknesses: List<com.example.library.core.domain.model.Types>,
     val height: String,
     val weight: String,
     val category: String,

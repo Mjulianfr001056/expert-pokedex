@@ -1,6 +1,6 @@
 package com.example.simplepokedex.data
 
-import com.example.simplepokedex.domain.model.Pokemon
+import com.example.library.core.domain.model.Pokemon
 import com.example.simplepokedex.util.Error
 import com.example.simplepokedex.util.Result
 import kotlinx.coroutines.flow.Flow

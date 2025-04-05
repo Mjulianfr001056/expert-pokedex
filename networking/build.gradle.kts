@@ -40,4 +40,18 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //Project
+    implementation(project(":core"))
+
+    //Networking
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.client.cio)
+
+    //Logging
+    implementation(libs.logging.android)
+
+    //Koin
+    implementation(libs.koin.androidx.compose)
 }

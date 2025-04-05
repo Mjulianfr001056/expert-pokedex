@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import com.example.simplepokedex.data.stub.PokemonList.list
+import com.example.library.networking.stub.PokemonList.list
 import com.example.simplepokedex.presentation.home.PokedexEntry
 import com.example.simplepokedex.presentation.home.PokedexSearchBar
 import com.example.simplepokedex.presentation.navigation.PokedexNavBar

@@ -1,6 +1,4 @@
-package com.example.simplepokedex.domain.model
-
-import com.example.simplepokedex.data.stub.Types
+package com.example.library.core.domain.model
 
 data class Pokemon (
     val id: Int,

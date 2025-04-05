@@ -1,8 +1,8 @@
-package com.example.simplepokedex.data.local
+package com.example.library.persistent.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.simplepokedex.data.stub.Types
+import com.example.library.core.domain.model.Types
 
 @Entity(tableName = "pokemon")
 data class PokemonEntity(

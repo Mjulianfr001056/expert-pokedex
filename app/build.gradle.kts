@@ -60,10 +60,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    //Networking
-    implementation(libs.ktor.client.core)
-    implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.client.cio)
+    //Project
+    implementation(project(":core"))
+    implementation(project(":persistent"))
+    implementation(project(":networking"))
 
     //Logging
     implementation(libs.logging.android)
@@ -79,11 +79,6 @@ dependencies {
 
     //Navigation
     implementation(libs.androidx.navigation.compose)
-
-    //Room
-    implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
 
     //Coil
     implementation(libs.coil.compose)

@@ -1,4 +1,6 @@
-package com.example.simplepokedex.data.stub
+package com.example.library.networking.stub
+
+import com.example.library.core.domain.model.Types
 
 object PokemonList {
     val list = listOf(

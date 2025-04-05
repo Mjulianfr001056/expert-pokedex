@@ -1,12 +1,11 @@
 package com.example.simplepokedex.util
 
-import com.example.simplepokedex.data.local.PokemonEntity
-import com.example.simplepokedex.data.stub.PokemonStub
-import com.example.simplepokedex.domain.model.Pokemon
+import com.example.library.persistent.entity.PokemonEntity
+import com.example.library.networking.stub.PokemonStub
 
 object PokemonMapper {
-    fun toDomain(pokemonStub: PokemonStub): Pokemon {
-        return Pokemon(
+    fun toDomain(pokemonStub: PokemonStub): com.example.library.core.domain.model.Pokemon {
+        return com.example.library.core.domain.model.Pokemon(
             id = pokemonStub.id,
             name = pokemonStub.name,
             imageUrl = pokemonStub.imageUrl,
@@ -23,8 +22,8 @@ object PokemonMapper {
         )
     }
 
-    fun toDomain(pokemonEntity: PokemonEntity): Pokemon {
-        return Pokemon(
+    fun toDomain(pokemonEntity: PokemonEntity): com.example.library.core.domain.model.Pokemon {
+        return com.example.library.core.domain.model.Pokemon(
             id = pokemonEntity.id,
             name = pokemonEntity.name,
             imageUrl = pokemonEntity.imageUrl,
@@ -41,7 +40,7 @@ object PokemonMapper {
         )
     }
 
-    fun toEntity(pokemon: Pokemon): PokemonEntity {
+    fun toEntity(pokemon: com.example.library.core.domain.model.Pokemon): PokemonEntity {
         return PokemonEntity(
             id = pokemon.id,
             name = pokemon.name,

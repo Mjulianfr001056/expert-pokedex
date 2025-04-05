@@ -2,7 +2,7 @@ package com.example.simplepokedex.presentation.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.simplepokedex.domain.model.Pokemon
+import com.example.library.core.domain.model.Pokemon
 import com.example.simplepokedex.domain.usecase.FavoritePokemonUseCase
 import com.example.simplepokedex.domain.usecase.PokemonUseCase
 import com.example.simplepokedex.ui.UiState
@@ -20,7 +20,7 @@ class DetailViewModel(
     private val favoritePokemonUseCase: FavoritePokemonUseCase
 ) : ViewModel() {
 
-    private val _pokemon = MutableStateFlow<UiState<Pokemon>>(UiState.Loading)
+    private val _pokemon = MutableStateFlow<UiState<com.example.library.core.domain.model.Pokemon>>(UiState.Loading)
     val pokemon = _pokemon.asStateFlow()
 
     private val _isFavorite = MutableStateFlow(false)
@@ -57,14 +57,14 @@ class DetailViewModel(
         }
     }
 
-    fun saveToFavorite(pokemon: Pokemon) {
+    fun saveToFavorite(pokemon: com.example.library.core.domain.model.Pokemon) {
         viewModelScope.launch {
             favoritePokemonUseCase.savePokemon(pokemon)
         }
         loadPokemon(pokemon.id)
     }
 
-    fun removeFromFavorite(pokemon: Pokemon) {
+    fun removeFromFavorite(pokemon: com.example.library.core.domain.model.Pokemon) {
         viewModelScope.launch {
             favoritePokemonUseCase.deletePokemon(pokemon)
         }
