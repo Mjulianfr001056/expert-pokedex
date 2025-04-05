@@ -1,7 +1,18 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
 }
+
+val localProperties = Properties().apply {
+    val localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        load(localPropertiesFile.inputStream())
+    }
+}
+
+val baseUrl: String = localProperties["BASE_URL"] as? String ?: "https://default.url/"
 
 android {
     namespace = "com.example.library.networking"
@@ -15,8 +26,16 @@ android {
     }
 
     buildTypes {
-        release {
+        val baseUrl: String = localProperties["BASE_URL"] as? String ?: "https://default.url/"
+
+        defaultConfig {
+            buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
+        }
+        debug {
             isMinifyEnabled = false
+        }
+        release {
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -29,6 +48,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+    }
+    buildFeatures {
+        buildConfig = true
     }
 }
 
@@ -45,9 +67,7 @@ dependencies {
     implementation(project(":core"))
 
     //Networking
-    implementation(libs.ktor.client.core)
-    implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.client.cio)
+    implementation(libs.bundles.ktor)
 
     //Logging
     implementation(libs.logging.android)
