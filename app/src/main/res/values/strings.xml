@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SimplePokedex</string>
+    <string name="title_johto">Johto</string>
 </resources>

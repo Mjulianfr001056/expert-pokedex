@@ -39,6 +39,7 @@ android {
     buildFeatures {
         compose = true
     }
+    dynamicFeatures += setOf(":johto")
 }
 
 dependencies {
