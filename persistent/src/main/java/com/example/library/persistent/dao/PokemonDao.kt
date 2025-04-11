@@ -1,5 +1,6 @@
 package com.example.library.persistent.dao
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
@@ -11,14 +12,23 @@ import kotlinx.coroutines.flow.Flow
 interface PokemonDao {
 
     @Upsert
-    suspend fun insertPokemon(pokemon: PokemonEntity)
+    suspend fun insert(pokemon: PokemonEntity)
+
+    @Upsert
+    suspend fun insertAll(pokemons: List<PokemonEntity>)
 
     @Query("SELECT * FROM pokemon")
-    fun getAll(): Flow<List<PokemonEntity>>
+    fun getAll(): PagingSource<Int, PokemonEntity>
+
+    @Query("SELECT * FROM pokemon")
+    fun getAll2(): Flow<List<PokemonEntity>>
 
     @Query("SELECT * FROM pokemon WHERE id = :id")
     fun getById(id: Int): Flow<PokemonEntity?>
 
     @Delete
     suspend fun delete(pokemon: PokemonEntity)
+
+    @Query("DELETE FROM pokemon")
+    suspend fun deleteAll()
 }

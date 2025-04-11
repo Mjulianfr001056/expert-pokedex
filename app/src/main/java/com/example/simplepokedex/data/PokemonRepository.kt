@@ -1,12 +1,13 @@
 package com.example.simplepokedex.data
 
+import androidx.paging.PagingData
 import com.example.library.core.domain.model.Pokemon
 import com.example.simplepokedex.util.Error
 import com.example.simplepokedex.util.Result
 import kotlinx.coroutines.flow.Flow
 
 interface PokemonRepository {
-    fun getAllPokemon() : Flow<Result<List<Pokemon>, Error>>
+    fun getAllPokemon() : Flow<PagingData<Pokemon>>
     fun getPokemonById(id: Int) : Flow<Result<Pokemon, Error>>
     fun searchPokemon(query: String) : Flow<Result<List<Pokemon>, Error>>
 

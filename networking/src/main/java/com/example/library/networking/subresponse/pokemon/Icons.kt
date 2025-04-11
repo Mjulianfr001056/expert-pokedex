@@ -10,5 +10,5 @@ data class Icons(
 	val frontDefault: String? = null,
 
 	@SerialName("front_female")
-	val frontFemale: Any? = null
+	val frontFemale: String? = null
 )

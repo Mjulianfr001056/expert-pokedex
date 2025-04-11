@@ -17,18 +17,18 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.library.core.domain.model.Types
-import com.example.library.core.domain.model.getBadgeColor
-import com.example.library.core.domain.model.getTextColor
+import id.ac.stis.sipadu.config.Types
+import id.ac.stis.sipadu.config.getBadgeColor
+import id.ac.stis.sipadu.config.getTextColor
 import com.example.simplepokedex.ui.theme.SimplePokedexTheme
 
-private class TypeBadgeParamaterProvider : PreviewParameterProvider<Types> {
-    override val values: Sequence<Types> = Types.entries.asSequence()
+private class TypeBadgeParamaterProvider : PreviewParameterProvider<id.ac.stis.sipadu.config.Types> {
+    override val values: Sequence<id.ac.stis.sipadu.config.Types> = id.ac.stis.sipadu.config.Types.entries.asSequence()
 }
 
 @Composable
 fun TypeBadge(
-    type: Types,
+    type: id.ac.stis.sipadu.config.Types,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -64,7 +64,7 @@ fun TypeBadge(
 @Composable
 @Preview
 private fun TypeBadgePreview(
-    @PreviewParameter(TypeBadgeParamaterProvider::class) type: Types
+    @PreviewParameter(TypeBadgeParamaterProvider::class) type: id.ac.stis.sipadu.config.Types
 ) {
     SimplePokedexTheme {
         TypeBadge(type = type)

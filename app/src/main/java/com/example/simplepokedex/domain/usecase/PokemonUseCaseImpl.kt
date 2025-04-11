@@ -12,7 +12,7 @@ class PokemonUseCaseImpl(
 
     override fun getAllPokemon() = repository.getAllPokemon()
 
-    override fun getPokemonById(id: Int): Flow<Result<com.example.library.core.domain.model.Pokemon, Error>> = repository.getPokemonById(id)
+    override fun getPokemonById(id: Int): Flow<Result<Pokemon, Error>> = repository.getPokemonById(id)
 
-    override fun searchPokemon(query: String): Flow<Result<List<com.example.library.core.domain.model.Pokemon>, Error>> = repository.searchPokemon(query)
+    override fun searchPokemon(query: String): Flow<Result<List<Pokemon>, Error>> = repository.searchPokemon(query)
 }

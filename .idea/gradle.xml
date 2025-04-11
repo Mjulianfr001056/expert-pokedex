@@ -11,6 +11,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/config" />
+            <option value="$PROJECT_DIR$/johto" />
+            <option value="$PROJECT_DIR$/kanto" />
+            <option value="$PROJECT_DIR$/networking" />
+            <option value="$PROJECT_DIR$/persistent" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

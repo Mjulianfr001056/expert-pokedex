@@ -3,6 +3,7 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 val localProperties = Properties().apply {
@@ -64,10 +65,11 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     //Project
-    implementation(project(":core"))
+    implementation(project(":config"))
 
     //Networking
     implementation(libs.bundles.ktor)
+    implementation(libs.ktor.client.okhttp)
 
     //Logging
     implementation(libs.logging.android)

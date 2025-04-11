@@ -1,6 +1,6 @@
 package com.example.library.networking.stub
 
-import com.example.library.core.domain.model.Types
+import id.ac.stis.sipadu.config.Types
 
 object PokemonList {
     val list = listOf(

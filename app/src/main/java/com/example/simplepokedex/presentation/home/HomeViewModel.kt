@@ -4,6 +4,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.library.core.domain.model.Pokemon
 import com.example.simplepokedex.domain.usecase.PokemonUseCase
 import com.example.simplepokedex.ui.UiState
@@ -18,7 +20,8 @@ import org.lighthousegames.logging.logging
 class HomeViewModel(
     private val pokemonUseCase: PokemonUseCase
 ) : ViewModel() {
-    private val _pokemonList: MutableStateFlow<UiState<List<com.example.library.core.domain.model.Pokemon>>> = MutableStateFlow(UiState.Loading)
+    //changed
+    private val _pokemonList: MutableStateFlow<PagingData<Pokemon>> = MutableStateFlow(PagingData.empty())
     val pokemonList = _pokemonList.asStateFlow()
 
     private val _query = mutableStateOf("")
@@ -31,23 +34,10 @@ class HomeViewModel(
     private fun getAllPokemon() {
         viewModelScope.launch {
             pokemonUseCase.getAllPokemon()
-                .collectLatest { pokemonList ->
-                    pokemonList.onSuccess {
-                        if(it.isEmpty()) {
-                            _pokemonList.value = UiState.Success(emptyList())
-                            log.d { "Empty list" }
-                            return@onSuccess
-                        }
-
-                        _pokemonList.value = UiState.Success(it)
-                        log.d { "Success: ${it.size}" }
-
-                    }.onError {
-                        _pokemonList.value = UiState.Error(it.toString())
-                        log.d(TAG) {
-                            "Error: $it"
-                        }
-                    }
+                .cachedIn(viewModelScope)
+                .collectLatest {
+                    _pokemonList.value = it
+                    log.debug { "Success: $it" }
                 }
         }
     }
@@ -57,22 +47,22 @@ class HomeViewModel(
         viewModelScope.launch {
             pokemonUseCase.searchPokemon(newQuery)
                 .collectLatest { pokemonList ->
-                    pokemonList.onSuccess {
-                        if(it.isEmpty()) {
-                            _pokemonList.value = UiState.Success(emptyList())
-                            log.d { "Empty list" }
-                            return@onSuccess
-                        }
-
-                        _pokemonList.value = UiState.Success(it)
-                        log.d { "Success: ${it.size}" }
-
-                    }.onError {
-                        _pokemonList.value = UiState.Error(it.toString())
-                        log.d(TAG) {
-                            "Error: $it"
-                        }
-                    }
+//                    pokemonList.onSuccess {
+//                        if(it.isEmpty()) {
+//                            _pokemonList.value = UiState.Success(emptyList())
+//                            log.d { "Empty list" }
+//                            return@onSuccess
+//                        }
+//
+//                        _pokemonList.value = UiState.Success(it)
+//                        log.d { "Success: ${it.size}" }
+//
+//                    }.onError {
+//                        _pokemonList.value = UiState.Error(it.toString())
+//                        log.d(TAG) {
+//                            "Error: $it"
+//                        }
+//                    }
                 }
         }
     }

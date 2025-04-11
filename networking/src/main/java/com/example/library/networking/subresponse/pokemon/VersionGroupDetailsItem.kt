@@ -16,5 +16,5 @@ data class VersionGroupDetailsItem(
 	val moveLearnMethod: MoveLearnMethod? = null,
 
     @SerialName("order")
-	val order: Any? = null
+	val order: Int? = null
 )

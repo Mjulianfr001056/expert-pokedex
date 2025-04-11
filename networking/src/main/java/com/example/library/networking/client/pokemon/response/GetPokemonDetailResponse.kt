@@ -4,7 +4,9 @@ import com.example.library.networking.subresponse.pokemon.AbilitiesItem
 import com.example.library.networking.subresponse.pokemon.Cries
 import com.example.library.networking.subresponse.pokemon.FormsItem
 import com.example.library.networking.subresponse.pokemon.GameIndicesItem
+import com.example.library.networking.subresponse.pokemon.HeldItemsItem
 import com.example.library.networking.subresponse.pokemon.MovesItem
+import com.example.library.networking.subresponse.pokemon.PastTypesItem
 import com.example.library.networking.subresponse.pokemon.Species
 import com.example.library.networking.subresponse.pokemon.Sprites
 import com.example.library.networking.subresponse.pokemon.StatsItem
@@ -34,7 +36,7 @@ data class GetPokemonDetailResponse(
 	val height: Int? = null,
 
     @SerialName("held_items")
-	val heldItems: List<Any?>? = null,
+	val heldItems: List<HeldItemsItem?>? = null,
 
     @SerialName("id")
 	val id: Int? = null,
@@ -55,10 +57,10 @@ data class GetPokemonDetailResponse(
 	val order: Int? = null,
 
     @SerialName("past_abilities")
-	val pastAbilities: List<Any?>? = null,
+	val pastAbilities: List<AbilitiesItem?>? = null,
 
     @SerialName("past_types")
-	val pastTypes: List<Any?>? = null,
+	val pastTypes: List<PastTypesItem?>? = null,
 
     @SerialName("species")
 	val species: Species? = null,

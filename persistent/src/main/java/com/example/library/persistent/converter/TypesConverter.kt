@@ -1,15 +1,16 @@
 package com.example.library.persistent.converter
 
 import androidx.room.TypeConverter
+import id.ac.stis.sipadu.config.Types
 
 class TypesConverter {
     @TypeConverter
-    fun fromTypes(types: com.example.library.core.domain.model.Types): String {
+    fun fromTypes(types: Types): String {
         return types.name
     }
 
     @TypeConverter
-    fun toTypes(types: String): com.example.library.core.domain.model.Types {
-        return com.example.library.core.domain.model.Types.valueOf(types)
+    fun toTypes(types: String): Types {
+        return Types.valueOf(types)
     }
 }

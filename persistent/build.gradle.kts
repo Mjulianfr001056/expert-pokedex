@@ -43,7 +43,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     //Project
-    implementation(project(":core"))
+    implementation(project(":config"))
 
     //Room
     implementation(libs.androidx.room.runtime)
@@ -52,4 +52,7 @@ dependencies {
 
     //Koin
     implementation(libs.koin.androidx.compose)
+
+    //Paging
+    implementation(libs.androidx.room.paging)
 }

@@ -2,6 +2,7 @@ package com.example.library.networking.di
 
 import com.example.library.networking.BuildConfig
 import io.ktor.client.HttpClient
+import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
@@ -18,7 +19,9 @@ private val logLevel = when (BuildConfig.BUILD_TYPE) {
 
 internal val clientModule = module {
     single<HttpClient> {
-        HttpClient(get()){
+        val engine = OkHttp.create()
+
+        HttpClient(engine){
             install(Logging) {
                 level = logLevel
                 logger = object : Logger {

@@ -61,9 +61,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     //Project
-    implementation(project(":core"))
+    implementation(project(":config"))
     implementation(project(":persistent"))
     implementation(project(":networking"))
+    implementation(project(":kanto"))
 
     //Logging
     implementation(libs.logging.android)
@@ -86,4 +87,10 @@ dependencies {
 
     //Testing
     androidTestImplementation(libs.androidx.navigation.testing)
+
+    //Paging
+    implementation(libs.androidx.room.paging)
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.compose)
+
 }

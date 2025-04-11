@@ -7,10 +7,10 @@ import kotlinx.serialization.SerialName
 data class Sprites(
 
     @SerialName("back_shiny_female")
-	val backShinyFemale: Any? = null,
+	val backShinyFemale: String? = null,
 
     @SerialName("back_female")
-	val backFemale: Any? = null,
+	val backFemale: String? = null,
 
     @SerialName("other")
 	val other: Other? = null,
@@ -19,7 +19,7 @@ data class Sprites(
 	val backDefault: String? = null,
 
     @SerialName("front_shiny_female")
-	val frontShinyFemale: Any? = null,
+	val frontShinyFemale: String? = null,
 
     @SerialName("front_default")
 	val frontDefault: String? = null,
@@ -28,7 +28,7 @@ data class Sprites(
 	val versions: Versions? = null,
 
     @SerialName("front_female")
-	val frontFemale: Any? = null,
+	val frontFemale: String? = null,
 
     @SerialName("back_shiny")
 	val backShiny: String? = null,

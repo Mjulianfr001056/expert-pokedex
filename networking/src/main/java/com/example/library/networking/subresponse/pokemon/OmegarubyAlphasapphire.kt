@@ -7,13 +7,13 @@ import kotlinx.serialization.SerialName
 data class OmegarubyAlphasapphire(
 
 	@SerialName("front_shiny_female")
-	val frontShinyFemale: Any? = null,
+	val frontShinyFemale: String? = null,
 
 	@SerialName("front_default")
 	val frontDefault: String? = null,
 
 	@SerialName("front_female")
-	val frontFemale: Any? = null,
+	val frontFemale: String? = null,
 
 	@SerialName("front_shiny")
 	val frontShiny: String? = null
