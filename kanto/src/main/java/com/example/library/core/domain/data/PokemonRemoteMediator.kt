@@ -25,7 +25,7 @@ class PokemonRemoteMediator(
 
     private companion object {
         const val INITIAL_OFFSET = 0
-        const val REQUEST_LIMIT = 20
+        const val REQUEST_LIMIT = 5
     }
 
     private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, PokemonEntity>): PokemonRemoteKeys? {
@@ -71,7 +71,10 @@ class PokemonRemoteMediator(
         }
 
         try {
-            val request = GetPokemonListRequest(offset = offset)
+            val request = GetPokemonListRequest(
+                offset = offset,
+                limit = state.config.pageSize
+            )
             val responseData = client.getPokemonList(request)
             val endOfPaginationReached = responseData.results?.isEmpty() ?: true
 
@@ -84,15 +87,25 @@ class PokemonRemoteMediator(
                 val pokemonDetail = client.getPokemonDetailByName(nameRequest)
                 val pokemonSpecies = client.getPokemonSpeciesByName(nameRequest)
 
+                val primaryTypeName = pokemonDetail.types
+                    ?.find { it?.slot == 1 }
+                    ?.type
+                    ?.name
+                    ?.uppercase()
+
+                val secondaryTypeName = pokemonDetail.types
+                    ?.find { it?.slot == 2 }
+                    ?.type
+                    ?.name
+                    ?.uppercase()
+
                 val pokemonEntity = PokemonEntity(
                     id = pokemonDetail.id ?: 0,
                     name = pokemonDetail.name.orEmpty(),
                     imageUrl = pokemonDetail.sprites?.other?.officialArtwork?.frontDefault ?: "",
-                    primaryType = pokemonDetail.types?.find { it?.slot == 1 }?.type?.name?.uppercase().let {
-                        id.ac.stis.sipadu.config.Types.valueOf(it ?: "UNKNOWN")
-                    },
-                    secondaryType = pokemonDetail.types?.find { it?.slot == 2 }?.type?.name?.uppercase().let {
-                        id.ac.stis.sipadu.config.Types.valueOf(it ?: "UNKNOWN")
+                    primaryType = primaryTypeName?.let { Types.valueOf(it) } ?: Types.UNKNOWN,
+                    secondaryType = secondaryTypeName?.let { name ->
+                        runCatching { Types.valueOf(name) }.getOrNull()
                     },
                     description = pokemonSpecies.flavorTextEntries?.find {
                         it?.version?.name == "firered" && it.language?.name == "en"
@@ -105,18 +118,13 @@ class PokemonRemoteMediator(
                     PokemonRemoteKeys(
                         name = result?.name.orEmpty(),
                         offset = offset,
-                        prevOffset = if (offset == INITIAL_OFFSET) null else offset - 20,
-                        nextOffset = if (endOfPaginationReached) null else offset + 20
+                        prevOffset = if (offset == INITIAL_OFFSET) null else offset - state.config.pageSize,
+                        nextOffset = if (endOfPaginationReached) null else offset + state.config.pageSize
                     )
                 )
             }
 
             database.withTransaction {
-                if (loadType == LoadType.REFRESH) {
-                    database.pokemonDao().deleteAll()
-                    database.remoteKeysDao().deleteAll()
-                }
-
                 database.pokemonDao().insertAll(pokemonEntities)
                 database.remoteKeysDao().insertAll(remoteKeys)
             }
