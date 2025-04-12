@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import com.example.simplepokedex.util.PokemonMapper
+import PokemonMapper
 import com.example.library.networking.stub.PokemonList
 import com.example.library.core.domain.model.Pokemon
 import com.example.simplepokedex.presentation.TypeBadge

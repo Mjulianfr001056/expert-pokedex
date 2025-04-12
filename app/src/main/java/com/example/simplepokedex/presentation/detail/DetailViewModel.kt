@@ -2,12 +2,11 @@ package com.example.simplepokedex.presentation.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.library.core.domain.model.Pokemon
 import com.example.simplepokedex.domain.usecase.FavoritePokemonUseCase
 import com.example.simplepokedex.domain.usecase.PokemonUseCase
 import com.example.simplepokedex.ui.UiState
-import com.example.simplepokedex.util.onError
-import com.example.simplepokedex.util.onSuccess
+import id.ac.stis.sipadu.config.onError
+import id.ac.stis.sipadu.config.onSuccess
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

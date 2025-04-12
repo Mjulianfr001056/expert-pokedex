@@ -1,4 +1,4 @@
-package com.example.simplepokedex.util
+package id.ac.stis.sipadu.config
 
 enum class GeneralError : Error {
     NOT_FOUND,

@@ -1,26 +1,23 @@
-package com.example.simplepokedex.data
+package com.example.library.core.domain.data
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.example.library.core.domain.data.PokemonRemoteMediator
 import com.example.library.core.domain.model.Pokemon
 import com.example.library.networking.client.pokemon.PokemonClient
-import com.example.library.persistent.dao.PokemonDao
 import com.example.library.networking.stub.PokemonList
 import com.example.library.persistent.PokedexDatabase
-import com.example.simplepokedex.util.Error
-import com.example.simplepokedex.util.GeneralError
-import com.example.simplepokedex.util.PokemonMapper
-import com.example.simplepokedex.util.Result
+import id.ac.stis.sipadu.config.Error
+import id.ac.stis.sipadu.config.GeneralError
+import PokemonMapper
+import id.ac.stis.sipadu.config.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import org.lighthousegames.logging.logging
 
 class PokemonRepositoryImpl(
     private val database: PokedexDatabase,
