@@ -5,13 +5,13 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.example.library.networking.client.pokemon.PokemonClient
-import com.example.library.persistent.PokedexDatabase
-import com.example.library.core.domain.model.Pokemon
 import com.example.library.core.Error
+import com.example.library.core.Result
+import com.example.library.core.domain.model.Pokemon
 import com.example.library.core.util.GeneralError
 import com.example.library.core.util.PokemonMapper
-import com.example.library.core.Result
+import com.example.library.networking.client.pokemon.PokemonClient
+import com.example.library.persistent.PokedexDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

@@ -25,7 +25,7 @@ fun PokedexNavHost(
 
     NavHost(
         navController = navController,
-        startDestination = "profile"
+        startDestination = "home",
     ){
         composable("home"){
             val viewModel = koinInject<HomeViewModel>()

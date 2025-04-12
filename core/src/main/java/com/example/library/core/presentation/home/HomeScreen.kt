@@ -23,6 +23,7 @@ import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.library.core.presentation.navigation.PokedexNavBar
+import org.lighthousegames.logging.logging
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -1,16 +1,13 @@
 package com.example.simplepokedex
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.compose.rememberNavController
-import com.example.library.core.presentation.navigation.ComposableFeatureEntry
+import com.example.library.core.di.coreModule
 import com.example.library.core.ui.theme.SimplePokedexTheme
-import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
-import com.google.android.play.core.splitinstall.SplitInstallRequest
 import org.koin.compose.KoinContext
-import org.koin.compose.koinInject
+import org.koin.core.context.loadKoinModules
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +15,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             SimplePokedexTheme {
                 KoinContext {
+                    loadKoinModules(coreModule)
                     val navController = rememberNavController()
 
                     PokedexNavHost(navController = navController)
