@@ -70,7 +70,7 @@ fun DetailScreen(
                 navigationIcon = {
                     IconButton(
                         onClick = {
-                            navController.popBackStack()
+                            navController.navigate("home")
                         }
                     ) {
                         Icon(

@@ -5,12 +5,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.compose.rememberNavController
 import com.example.dfm.favorite.di.favoriteModule
-import com.example.dfm.favorite.presentation.favorite.FavoriteScreen
-import com.example.dfm.favorite.presentation.favorite.FavoriteViewModel
+import com.example.dfm.favorite.presentation.LocalPokedexNavHost
 import com.example.library.core.di.coreModule
 import com.example.library.core.ui.theme.SimplePokedexTheme
 import org.koin.compose.KoinContext
-import org.koin.compose.koinInject
 import org.koin.core.context.loadKoinModules
 
 class FavoriteActivity : ComponentActivity() {
@@ -25,13 +23,12 @@ class FavoriteActivity : ComponentActivity() {
                             coreModule
                         )
                     )
-                    val navController = rememberNavController()
-                    val viewModel = koinInject<FavoriteViewModel>()
 
-                    FavoriteScreen(
-                        navController = navController,
-                        viewModel = viewModel
-                    )
+                    val navController = rememberNavController()
+                    val start = intent.extras?.getString("route") ?: "favorite"
+                    val id = intent.extras?.getString("id")?.toInt() ?: 0
+
+                    LocalPokedexNavHost(navController, start, id)
                 }
             }
         }

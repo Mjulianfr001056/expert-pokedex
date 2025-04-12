@@ -22,6 +22,8 @@ fun PokedexNavHost(
     navController: NavHostController
 ) {
     val context = LocalContext.current
+    val splitInstallManager = SplitInstallManagerFactory.create(context)
+    val moduleFavorite = "favorite"
 
     NavHost(
         navController = navController,
@@ -37,16 +39,35 @@ fun PokedexNavHost(
 
         }
 
-//        composable("detail/{id}") {
-//            val viewModel = koinInject<DetailViewModel>()
-//            val id = it.arguments?.getString("id") ?: ""
-//
-//            DetailScreen(
-//                viewModel = viewModel,
-//                navController = navController,
-//                id = id.toInt()
-//            )
-//        }
+        composable("detail/{id}") {
+            val id = it.arguments?.getString("id") ?: ""
+            val route = "detail"
+
+            LaunchedEffect(moduleFavorite) {
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    data = Uri.parse("app://com.example.dfm.favorite")
+                    `package` = context.packageName
+                }
+
+                intent.putExtra("route", route)
+                intent.putExtra("id", id)
+
+                if (splitInstallManager.installedModules.contains(moduleFavorite)) {
+                    context.startActivity(intent)
+                    (context as? Activity)?.finish()
+                } else {
+                    val request = SplitInstallRequest.newBuilder()
+                        .addModule(moduleFavorite)
+                        .build()
+
+                    splitInstallManager.startInstall(request)
+                        .addOnSuccessListener {
+                            context.startActivity(intent)
+                            (context as? Activity)?.finish()
+                        }
+                }
+            }
+        }
 
         composable("profile") {
             ProfileScreen(
@@ -55,34 +76,29 @@ fun PokedexNavHost(
         }
 
         composable("favorite") {
-            val splitInstallManager = SplitInstallManagerFactory.create(context)
-            val moduleFavorite = "favorite"
+            val route = "favorite"
 
             LaunchedEffect(moduleFavorite) {
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    data = Uri.parse("app://com.example.dfm.favorite")
+                    `package` = context.packageName
+                }
+
+                intent.putExtra("route", route)
+                intent.putExtra("id", id)
+
                 if (splitInstallManager.installedModules.contains(moduleFavorite)) {
-                    val intent = Intent(Intent.ACTION_VIEW).apply {
-                        data = Uri.parse("app://com.example.dfm.favorite")
-                        `package` = context.packageName
-                    }
                     context.startActivity(intent)
                     (context as? Activity)?.finish()
                 } else {
                     val request = SplitInstallRequest.newBuilder()
                         .addModule(moduleFavorite)
                         .build()
+
                     splitInstallManager.startInstall(request)
                         .addOnSuccessListener {
-                            Toast.makeText(context, "Module installed", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(Intent.ACTION_VIEW).apply {
-                                data = Uri.parse("app://com.example.dfm.favorite")
-                                `package` = context.packageName
-                            }
                             context.startActivity(intent)
-
                             (context as? Activity)?.finish()
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(context, "Module install failed", Toast.LENGTH_SHORT).show()
                         }
                 }
             }
