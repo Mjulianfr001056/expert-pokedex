@@ -1,7 +1,9 @@
 package com.example.library.persistent.converter
 
 import androidx.compose.ui.graphics.Color
+import kotlinx.serialization.Serializable
 
+@Serializable
 enum class Types {
     NORMAL,
     FIRE,

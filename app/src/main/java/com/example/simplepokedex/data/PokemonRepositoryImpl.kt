@@ -5,16 +5,16 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.example.simplepokedex.domain.model.Pokemon
 import com.example.library.networking.client.pokemon.PokemonClient
 import com.example.library.persistent.PokedexDatabase
-import com.example.simplepokedex.util.Error
+import com.example.simplepokedex.domain.model.Pokemon
+import com.example.library.core.Error
 import com.example.simplepokedex.util.GeneralError
 import com.example.simplepokedex.util.PokemonMapper
-import com.example.simplepokedex.util.Result
+import com.example.library.core.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
@@ -45,16 +45,14 @@ class PokemonRepositoryImpl(
     }
 
     override fun getPokemonById(id: Int): Flow<Result<Pokemon, Error>> {
-        return emptyFlow()
-    }
-
-    override suspend fun savePokemon(pokemon: Pokemon): Result<Unit, Error> {
-        return try {
-            dao.insert(PokemonMapper.toEntity(pokemon))
-            Result.Success(Unit)
-        } catch (e: Exception) {
+        return dao.getById(id).map { entity ->
+            if (entity == null) {
+                return@map Result.Error(GeneralError.NOT_FOUND)
+            }
+            Result.Success(PokemonMapper.toDomain(entity))
+        }.catch { e ->
             Result.Error(GeneralError.IO_ERROR)
-        }
+        }.flowOn(Dispatchers.IO)
     }
 
     @OptIn(ExperimentalPagingApi::class)
@@ -75,26 +73,5 @@ class PokemonRepositoryImpl(
         ).flow.map { pagingData ->
             pagingData.map { entity -> PokemonMapper.toDomain(entity) }
         }.flowOn(Dispatchers.IO)
-    }
-
-    override suspend fun deletePokemon(pokemon: Pokemon): Result<Unit, Error> {
-        return try {
-            dao.delete(PokemonMapper.toEntity(pokemon))
-            Result.Success(Unit)
-        } catch (e: Exception) {
-            Result.Error(GeneralError.IO_ERROR)
-        }
-    }
-
-    override suspend fun isFavoritePokemon(id: Int): Flow<Result<Boolean, Error>> {
-        return dao.getById(id).map {
-            Result.Success(it != null)
-        }
-    }
-
-    override fun getAllFavoritePokemon(): Flow<Result<List<Pokemon>, Error>> {
-        return dao.getAll2().map {
-            Result.Success(it.map { PokemonMapper.toDomain(it) })
-        }
     }
 }

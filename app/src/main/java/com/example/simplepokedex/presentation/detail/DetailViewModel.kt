@@ -3,11 +3,11 @@ package com.example.simplepokedex.presentation.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.simplepokedex.domain.model.Pokemon
-import com.example.simplepokedex.domain.usecase.FavoritePokemonUseCase
+import com.example.dfm.favorite.domain.usecase.FavoritePokemonUseCase
 import com.example.simplepokedex.domain.usecase.PokemonUseCase
 import com.example.simplepokedex.ui.UiState
-import com.example.simplepokedex.util.onError
-import com.example.simplepokedex.util.onSuccess
+import com.example.library.core.onError
+import com.example.library.core.onSuccess
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -59,14 +59,14 @@ class DetailViewModel(
 
     fun saveToFavorite(pokemon: Pokemon) {
         viewModelScope.launch {
-            favoritePokemonUseCase.savePokemon(pokemon)
+            favoritePokemonUseCase.savePokemon(pokemon.id)
         }
         loadPokemon(pokemon.id)
     }
 
     fun removeFromFavorite(pokemon: Pokemon) {
         viewModelScope.launch {
-            favoritePokemonUseCase.deletePokemon(pokemon)
+            favoritePokemonUseCase.deletePokemon(pokemon.id)
         }
         loadPokemon(pokemon.id)
     }

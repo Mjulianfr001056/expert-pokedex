@@ -2,8 +2,8 @@ package com.example.simplepokedex.domain.usecase
 
 import androidx.paging.PagingData
 import com.example.simplepokedex.domain.model.Pokemon
-import com.example.simplepokedex.util.Error
-import com.example.simplepokedex.util.Result
+import com.example.library.core.Error
+import com.example.library.core.Result
 import kotlinx.coroutines.flow.Flow
 
 interface PokemonUseCase {

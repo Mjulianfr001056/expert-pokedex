@@ -15,5 +15,4 @@ data class Pokemon (
     val category: String,
     val abilities: String,
     val abilitiesDescription: String,
-    val isFavorite: Boolean
 )

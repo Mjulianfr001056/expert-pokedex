@@ -61,6 +61,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     //Project
+    implementation(project(":core"))
+    implementation(project(":favorite"))
     implementation(project(":persistent"))
     implementation(project(":networking"))
 
@@ -93,4 +95,7 @@ dependencies {
 
     //Room
     implementation(libs.androidx.room.ktx)
+
+    //Ktor
+    implementation(libs.bundles.ktor)
 }

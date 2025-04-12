@@ -12,6 +12,7 @@ import com.example.library.networking.client.pokemon.request.GetPokemonListReque
 import com.example.library.persistent.PokedexDatabase
 import com.example.library.persistent.entity.PokemonEntity
 import com.example.library.persistent.entity.PokemonRemoteKeys
+import com.example.simplepokedex.util.PokemonMapper
 
 @OptIn(ExperimentalPagingApi::class)
 class PokemonRemoteMediator(
@@ -87,31 +88,8 @@ class PokemonRemoteMediator(
                 val pokemonDetail = client.getPokemonDetailByName(nameRequest)
                 val pokemonSpecies = client.getPokemonSpeciesByName(nameRequest)
 
-                val primaryTypeName = pokemonDetail.types
-                    ?.find { it?.slot == 1 }
-                    ?.type
-                    ?.name
-                    ?.uppercase()
+                val pokemonEntity = PokemonMapper.toEntity(pokemonDetail, pokemonSpecies)
 
-                val secondaryTypeName = pokemonDetail.types
-                    ?.find { it?.slot == 2 }
-                    ?.type
-                    ?.name
-                    ?.uppercase()
-
-                val pokemonEntity = PokemonEntity(
-                    id = pokemonDetail.id ?: 0,
-                    name = pokemonDetail.name.orEmpty(),
-                    imageUrl = pokemonDetail.sprites?.other?.officialArtwork?.frontDefault ?: "",
-                    primaryType = primaryTypeName?.let { Types.valueOf(it) } ?: Types.UNKNOWN,
-                    secondaryType = secondaryTypeName?.let { name ->
-                        runCatching { Types.valueOf(name) }.getOrNull()
-                    },
-                    description = pokemonSpecies.flavorTextEntries?.find {
-                        it?.version?.name == "firered" && it.language?.name == "en"
-                    }?.flavorText.orEmpty(),
-                    isFavorite = false
-                )
                 pokemonEntities.add(pokemonEntity)
 
                 remoteKeys.add(
