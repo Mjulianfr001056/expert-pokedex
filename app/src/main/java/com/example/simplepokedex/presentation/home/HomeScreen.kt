@@ -1,5 +1,7 @@
 package com.example.simplepokedex.presentation.home
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.CircularProgressIndicator
@@ -11,6 +13,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -66,17 +69,6 @@ fun HomeScreen(
                 )
             }
 
-//            (list as? UiState.Success)?.data?.forEach{ pokemon ->
-//                item {
-//                    PokedexEntry(
-//                        pokemon = pokemon,
-//                        onClick = {
-//                            navController.navigate("detail/${pokemon.id}")
-//                        }
-//                    )
-//                }
-//            }
-
             items(list.itemCount) { index ->
                 val pokemon = list[index]
                 if (pokemon != null) {
@@ -93,7 +85,14 @@ fun HomeScreen(
                 when (loadState.append) {
                     is LoadState.Loading -> {
                         item {
-                            CircularProgressIndicator(modifier = Modifier.padding(16.dp))
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(16.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                CircularProgressIndicator(modifier = Modifier.padding(16.dp))
+                            }
                         }
                     }
 
@@ -112,11 +111,3 @@ fun HomeScreen(
         }
     }
 }
-
-//@Composable
-//@Preview
-//private fun HomeScreenPreview() {
-//    SimplePokedexTheme {
-//        HomeScreen()
-//    }
-//}

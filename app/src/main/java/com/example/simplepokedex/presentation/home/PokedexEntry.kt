@@ -28,16 +28,17 @@ import com.example.library.networking.stub.PokemonList
 import com.example.library.core.domain.model.Pokemon
 import com.example.simplepokedex.presentation.TypeBadge
 import com.example.simplepokedex.ui.theme.SimplePokedexTheme
+import id.ac.stis.sipadu.config.toProperString
 
-private class PokedexEntryParamaterProvider : PreviewParameterProvider<com.example.library.core.domain.model.Pokemon> {
-    override val values: Sequence<com.example.library.core.domain.model.Pokemon> = PokemonList.list.map {
+private class PokedexEntryParamaterProvider : PreviewParameterProvider<Pokemon> {
+    override val values: Sequence<Pokemon> = PokemonList.list.map {
         PokemonMapper.toDomain(it)
     }.asSequence()
 }
 
 @Composable
 fun PokedexEntry(
-    pokemon: com.example.library.core.domain.model.Pokemon,
+    pokemon: Pokemon,
     modifier: Modifier = Modifier,
     onClick : () -> Unit = {}
 ) {
@@ -76,7 +77,7 @@ fun PokedexEntry(
                     color = Color.Gray
                 )
                 Text(
-                    text = pokemon.name,
+                    text = pokemon.name.toProperString(),
                     style = TextStyle(
                         fontWeight = FontWeight.Bold,
                         fontSize = 24.sp
@@ -111,7 +112,7 @@ fun PokedexEntry(
 @Composable
 @Preview
 private fun PokedexEntryPreview(
-    @PreviewParameter(PokedexEntryParamaterProvider::class) pokemon: com.example.library.core.domain.model.Pokemon
+    @PreviewParameter(PokedexEntryParamaterProvider::class) pokemon: Pokemon
 ) {
     SimplePokedexTheme {
         PokedexEntry(pokemon = pokemon)
