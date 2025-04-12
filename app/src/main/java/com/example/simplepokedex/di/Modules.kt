@@ -1,7 +1,7 @@
 package com.example.simplepokedex.di
 
-import com.example.library.core.domain.data.PokemonRepository
-import com.example.library.core.domain.data.PokemonRepositoryImpl
+import com.example.simplepokedex.data.PokemonRepository
+import com.example.simplepokedex.data.PokemonRepositoryImpl
 import com.example.simplepokedex.domain.usecase.FavoritePokemonUseCase
 import com.example.simplepokedex.domain.usecase.FavoritePokemonUseCaseImpl
 import com.example.simplepokedex.domain.usecase.PokemonUseCase

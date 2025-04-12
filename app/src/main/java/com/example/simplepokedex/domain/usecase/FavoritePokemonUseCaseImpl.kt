@@ -1,9 +1,9 @@
 package com.example.simplepokedex.domain.usecase
 
-import com.example.library.core.domain.data.PokemonRepository
+import com.example.simplepokedex.data.PokemonRepository
 import com.example.library.core.domain.model.Pokemon
-import id.ac.stis.sipadu.config.Error
-import id.ac.stis.sipadu.config.Result
+import com.example.simplepokedex.util.Error
+import com.example.simplepokedex.util.Result
 import kotlinx.coroutines.flow.Flow
 
 class FavoritePokemonUseCaseImpl(
@@ -15,5 +15,5 @@ class FavoritePokemonUseCaseImpl(
 
     override suspend fun isFavoritePokemon(id: Int) = pokemonRepository.isFavoritePokemon(id)
 
-    override fun getAllFavoritePokemon(): Flow<Result<List<Pokemon>, Error>> = pokemonRepository.getAllFavoritePokemon()
+    override fun getAllFavoritePokemon(): Flow<Result<List<com.example.library.core.domain.model.Pokemon>, Error>> = pokemonRepository.getAllFavoritePokemon()
 }
