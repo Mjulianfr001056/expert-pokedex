@@ -10,15 +10,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import com.example.library.networking.stub.PokemonList.list
 import com.example.simplepokedex.presentation.home.PokedexEntry
-import com.example.simplepokedex.presentation.home.PokedexSearchBar
 import com.example.simplepokedex.presentation.navigation.PokedexNavBar
 import com.example.simplepokedex.ui.UiState
 

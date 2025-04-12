@@ -2,7 +2,7 @@ package com.example.simplepokedex.presentation.favorite
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.library.core.domain.model.Pokemon
+import com.example.simplepokedex.domain.model.Pokemon
 import com.example.simplepokedex.domain.usecase.FavoritePokemonUseCase
 import com.example.simplepokedex.ui.UiState
 import com.example.simplepokedex.util.onError
@@ -16,7 +16,7 @@ class FavoriteViewModel(
     private val favoritePokemonUseCase: FavoritePokemonUseCase
 ): ViewModel() {
 
-    private val _favoritePokemon = MutableStateFlow<UiState<List<com.example.library.core.domain.model.Pokemon>>>(UiState.Loading)
+    private val _favoritePokemon = MutableStateFlow<UiState<List<Pokemon>>>(UiState.Loading)
     val favoritePokemon = _favoritePokemon.asStateFlow()
 
     init {

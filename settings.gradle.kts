@@ -23,6 +23,4 @@ rootProject.name = "SimplePokedex"
 include(":app")
 include(":networking")
 include(":persistent")
-include(":kanto")
-include(":config")
 include(":favorite")

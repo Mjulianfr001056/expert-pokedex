@@ -64,9 +64,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    //Project
-    implementation(project(":config"))
-
     //Networking
     implementation(libs.bundles.ktor)
     implementation(libs.ktor.client.okhttp)

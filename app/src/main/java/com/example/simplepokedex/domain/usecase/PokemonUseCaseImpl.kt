@@ -2,7 +2,7 @@ package com.example.simplepokedex.domain.usecase
 
 import androidx.paging.PagingData
 import com.example.simplepokedex.data.PokemonRepository
-import com.example.library.core.domain.model.Pokemon
+import com.example.simplepokedex.domain.model.Pokemon
 import com.example.simplepokedex.util.Error
 import com.example.simplepokedex.util.Result
 import kotlinx.coroutines.flow.Flow

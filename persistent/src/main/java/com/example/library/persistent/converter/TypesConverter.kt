@@ -1,7 +1,6 @@
 package com.example.library.persistent.converter
 
 import androidx.room.TypeConverter
-import id.ac.stis.sipadu.config.Types
 
 class TypesConverter {
     @TypeConverter

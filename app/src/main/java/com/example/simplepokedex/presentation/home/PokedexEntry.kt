@@ -17,24 +17,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import com.example.simplepokedex.util.PokemonMapper
-import com.example.library.networking.stub.PokemonList
-import com.example.library.core.domain.model.Pokemon
+import com.example.simplepokedex.domain.model.Pokemon
 import com.example.simplepokedex.presentation.TypeBadge
-import com.example.simplepokedex.ui.theme.SimplePokedexTheme
-import id.ac.stis.sipadu.config.toProperString
-
-private class PokedexEntryParamaterProvider : PreviewParameterProvider<Pokemon> {
-    override val values: Sequence<Pokemon> = PokemonList.list.map {
-        PokemonMapper.toDomain(it)
-    }.asSequence()
-}
+import com.example.simplepokedex.util.toProperString
 
 @Composable
 fun PokedexEntry(
@@ -106,15 +94,5 @@ fun PokedexEntry(
                 }
             }
         }
-    }
-}
-
-@Composable
-@Preview
-private fun PokedexEntryPreview(
-    @PreviewParameter(PokedexEntryParamaterProvider::class) pokemon: Pokemon
-) {
-    SimplePokedexTheme {
-        PokedexEntry(pokemon = pokemon)
     }
 }

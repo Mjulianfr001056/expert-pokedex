@@ -1,4 +1,4 @@
-package id.ac.stis.sipadu.config
+package com.example.simplepokedex.util
 
 fun String.toProperString() : String{
     val words = this.split(" ")

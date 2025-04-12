@@ -2,7 +2,7 @@ package com.example.library.persistent.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import id.ac.stis.sipadu.config.Types
+import com.example.library.persistent.converter.Types
 
 @Entity(tableName = "pokemon")
 data class PokemonEntity(

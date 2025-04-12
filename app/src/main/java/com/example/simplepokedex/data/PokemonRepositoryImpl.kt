@@ -5,11 +5,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.example.library.core.domain.data.PokemonRemoteMediator
-import com.example.library.core.domain.model.Pokemon
+import com.example.simplepokedex.domain.model.Pokemon
 import com.example.library.networking.client.pokemon.PokemonClient
-import com.example.library.persistent.dao.PokemonDao
-import com.example.library.networking.stub.PokemonList
 import com.example.library.persistent.PokedexDatabase
 import com.example.simplepokedex.util.Error
 import com.example.simplepokedex.util.GeneralError
@@ -17,10 +14,9 @@ import com.example.simplepokedex.util.PokemonMapper
 import com.example.simplepokedex.util.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import org.lighthousegames.logging.logging
 
 class PokemonRepositoryImpl(
     private val database: PokedexDatabase,
@@ -49,18 +45,7 @@ class PokemonRepositoryImpl(
     }
 
     override fun getPokemonById(id: Int): Flow<Result<Pokemon, Error>> {
-        return flow {
-            try {
-                val response = PokemonList.list.find { it.id == id }
-                if (response != null) {
-                    emit(Result.Success(PokemonMapper.toDomain(response)))
-                } else {
-                    emit(Result.Error(GeneralError.NOT_FOUND))
-                }
-            } catch (e: Exception) {
-                emit(Result.Error(GeneralError.IO_ERROR))
-            }
-        }.flowOn(Dispatchers.IO)
+        return emptyFlow()
     }
 
     override suspend fun savePokemon(pokemon: Pokemon): Result<Unit, Error> {

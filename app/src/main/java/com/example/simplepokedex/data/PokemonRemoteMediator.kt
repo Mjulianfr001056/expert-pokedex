@@ -1,11 +1,11 @@
-package com.example.library.core.domain.data
+package com.example.simplepokedex.data
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import id.ac.stis.sipadu.config.Types
+import com.example.library.persistent.converter.Types
 import com.example.library.networking.client.pokemon.PokemonClient
 import com.example.library.networking.client.pokemon.request.GetPokemonByNameRequest
 import com.example.library.networking.client.pokemon.request.GetPokemonListRequest

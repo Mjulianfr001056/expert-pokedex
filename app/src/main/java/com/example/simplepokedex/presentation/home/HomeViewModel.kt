@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.library.core.domain.model.Pokemon
+import com.example.simplepokedex.domain.model.Pokemon
 import com.example.simplepokedex.domain.usecase.PokemonUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
