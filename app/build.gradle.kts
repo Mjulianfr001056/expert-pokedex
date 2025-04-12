@@ -39,7 +39,7 @@ android {
     buildFeatures {
         compose = true
     }
-    dynamicFeatures += setOf(":johto", ":favorite")
+    dynamicFeatures += setOf(":favorite")
 }
 
 dependencies {
