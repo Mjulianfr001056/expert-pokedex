@@ -28,31 +28,27 @@ class DetailViewModel(
 
     fun loadPokemon(id: Int) {
         viewModelScope.launch {
-            coroutineScope {
-                launch {
-                    getPokemonUseCase.getPokemonById(id)
-                        .collectLatest { result ->
-                            result.onSuccess {
-                                _pokemon.value = UiState.Success(it)
-                            }
-                                .onError {
-                                    _pokemon.value = UiState.Error(it.toString())
-                                }
+            launch {
+                getPokemonUseCase.getPokemonById(id)
+                    .collectLatest { result ->
+                        result.onSuccess {
+                            _pokemon.value = UiState.Success(it)
                         }
-                }
+                            .onError {
+                                _pokemon.value = UiState.Error(it.toString())
+                            }
+                    }
             }
 
-            coroutineScope {
-                launch {
-                    favoritePokemonUseCase.isFavoritePokemon(id)
-                        .collectLatest { result ->
-                            result.onSuccess {
-                                _isFavorite.value = it
-                            }.onError {
-                                logging().debug { "Error: $it" }
-                            }
+            launch {
+                favoritePokemonUseCase.isFavoritePokemon(id)
+                    .collectLatest { result ->
+                        result.onSuccess {
+                            _isFavorite.value = it
+                        }.onError {
+                            logging().debug { "Error: $it" }
                         }
-                }
+                    }
             }
         }
     }

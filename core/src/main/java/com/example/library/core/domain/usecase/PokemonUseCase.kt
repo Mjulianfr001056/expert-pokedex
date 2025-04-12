@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface PokemonUseCase {
     fun getAllPokemon() : Flow<PagingData<Pokemon>>
+    fun getLocalPokemon() : Flow<PagingData<Pokemon>>
     fun getPokemonById(id: Int) : Flow<Result<Pokemon, Error>>
     fun searchPokemon(query: String) : Flow<PagingData<Pokemon>>
 }

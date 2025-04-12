@@ -44,6 +44,21 @@ class PokemonRepositoryImpl(
         }.flowOn(Dispatchers.IO)
     }
 
+    override fun getLocalPokemon(): Flow<PagingData<Pokemon>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 20,
+                prefetchDistance = 10,
+                enablePlaceholders = true,
+            ),
+            pagingSourceFactory = {
+                dao.getAll()
+            }
+        ).flow.map { pagingData ->
+            pagingData.map { entity -> PokemonMapper.toDomain(entity) }
+        }.flowOn(Dispatchers.IO)
+    }
+
     override fun getPokemonById(id: Int): Flow<Result<Pokemon, Error>> {
         return dao.getById(id).map { entity ->
             if (entity == null) {
