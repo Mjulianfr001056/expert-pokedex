@@ -28,6 +28,9 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildFeatures {
+        compose = true
+    }
 }
 
 dependencies {
@@ -51,6 +54,9 @@ dependencies {
     implementation(project(":app"))
     implementation(project(":core"))
     implementation(project(":persistent"))
+
+    //Koin
+    implementation(libs.koin.androidx.compose)
 
     //Logging
     implementation(libs.logging.android)

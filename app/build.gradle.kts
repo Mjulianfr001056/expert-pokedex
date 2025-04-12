@@ -97,4 +97,7 @@ dependencies {
 
     //Ktor
     implementation(libs.bundles.ktor)
+
+    //Dfm
+    implementation(libs.feature.delivery.ktx)
 }

@@ -18,18 +18,18 @@ class FavoriteViewModel(
     val favoritePokemon = _favoritePokemon.asStateFlow()
 
     init {
-        getAllFavoritePokemon()
+//        getAllFavoritePokemon()
     }
 
-    fun getAllFavoritePokemon() {
-        viewModelScope.launch {
-            pokemonUseCase.getAllPokemon().collectLatest { result ->
+//    fun getAllFavoritePokemon() {
+//        viewModelScope.launch {
+//            pokemonUseCase.getAllPokemon().collectLatest { result ->
 //                result.onSuccess {
 //                    _favoritePokemon.value = UiState.Success(it)
 //                }.onError {
 //                    _favoritePokemon.value = UiState.Error(it.toString())
 //                }
-            }
-        }
-    }
+//            }
+//        }
+//    }
 }

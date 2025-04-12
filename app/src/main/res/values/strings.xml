@@ -2,4 +2,5 @@
     <string name="app_name">SimplePokedex</string>
     <string name="title_johto">Johto</string>
     <string name="title_favorite">Favorite</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
