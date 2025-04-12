@@ -3,9 +3,9 @@ package com.example.dfm.favorite.data
 import com.example.dfm.favorite.domain.model.Favorite
 import com.example.library.persistent.dao.FavoriteDao
 import com.example.library.persistent.entity.FavoritePokemon
-import com.example.simplepokedex.util.Error
-import com.example.simplepokedex.util.GeneralError
-import com.example.simplepokedex.util.Result
+import com.example.library.core.Result
+import com.example.library.core.Error
+import com.example.library.core.util.GeneralError
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

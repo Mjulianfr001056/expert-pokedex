@@ -4,8 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.compose.rememberNavController
-import com.example.simplepokedex.presentation.navigation.PokedexNavHost
-import com.example.simplepokedex.ui.theme.SimplePokedexTheme
+import com.example.library.core.ui.theme.SimplePokedexTheme
 import org.koin.compose.KoinContext
 
 class MainActivity : ComponentActivity() {

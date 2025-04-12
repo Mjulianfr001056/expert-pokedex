@@ -62,7 +62,6 @@ dependencies {
 
     //Project
     implementation(project(":core"))
-    implementation(project(":favorite"))
     implementation(project(":persistent"))
     implementation(project(":networking"))
 
