@@ -25,8 +25,9 @@ import org.lighthousegames.logging.logging
 class PokemonRepositoryImpl(
     private val database: PokedexDatabase,
     private val client: PokemonClient,
-    private val dao: PokemonDao
 ) : PokemonRepository {
+    private val dao = database.pokemonDao()
+
     override fun getAllPokemon(): Flow<PagingData<Pokemon>> {
         @OptIn(ExperimentalPagingApi::class)
         return Pager(
@@ -62,21 +63,6 @@ class PokemonRepositoryImpl(
         }.flowOn(Dispatchers.IO)
     }
 
-    override fun searchPokemon(query: String): Flow<Result<List<Pokemon>, Error>> {
-        return flow {
-            try {
-                val response = PokemonList.list.filter {
-                    it.name.contains(query, ignoreCase = true)
-                }.map {
-                    PokemonMapper.toDomain(it)
-                }
-                emit(Result.Success(response))
-            } catch (e: Exception) {
-                emit(Result.Error(GeneralError.IO_ERROR))
-            }
-        }.flowOn(Dispatchers.IO)
-    }
-
     override suspend fun savePokemon(pokemon: Pokemon): Result<Unit, Error> {
         return try {
             dao.insert(PokemonMapper.toEntity(pokemon))
@@ -84,6 +70,26 @@ class PokemonRepositoryImpl(
         } catch (e: Exception) {
             Result.Error(GeneralError.IO_ERROR)
         }
+    }
+
+    @OptIn(ExperimentalPagingApi::class)
+    override fun searchPokemon(query: String): Flow<PagingData<Pokemon>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5,
+                prefetchDistance = 3,
+                enablePlaceholders = true,
+            ),
+            remoteMediator = PokemonRemoteMediator(
+                database = database,
+                client = client,
+            ),
+            pagingSourceFactory = {
+                dao.search(query)
+            }
+        ).flow.map { pagingData ->
+            pagingData.map { entity -> PokemonMapper.toDomain(entity) }
+        }.flowOn(Dispatchers.IO)
     }
 
     override suspend fun deletePokemon(pokemon: Pokemon): Result<Unit, Error> {

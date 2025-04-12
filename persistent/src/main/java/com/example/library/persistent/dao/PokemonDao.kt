@@ -17,6 +17,9 @@ interface PokemonDao {
     @Upsert
     suspend fun insertAll(pokemons: List<PokemonEntity>)
 
+    @Query("SELECT * FROM pokemon WHERE name LIKE '%' || :query || '%' ORDER BY id ASC")
+    fun search(query: String): PagingSource<Int, PokemonEntity>
+
     @Query("SELECT * FROM pokemon")
     fun getAll(): PagingSource<Int, PokemonEntity>
 
