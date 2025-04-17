@@ -66,4 +66,8 @@ dependencies {
 
     //Paging
     implementation(libs.androidx.room.paging)
+
+    //Sql Cipher
+    implementation(libs.android.database.sqlcipher)
+    implementation(libs.androidx.sqlite.ktx)
 }
