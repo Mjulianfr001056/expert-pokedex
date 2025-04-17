@@ -20,9 +20,9 @@ interface PokemonClient {
 }
 
 internal class PokemonClientImpl(
-    val httpClient: HttpClient
+    private val httpClient: HttpClient
 ) : PokemonClient {
-    val baseUrl = BuildConfig.BASE_URL
+    private val baseUrl = BuildConfig.BASE_URL
 
     override suspend fun getPokemonList(request: GetPokemonListRequest): GetPokemonListResponse {
         return httpClient.get(baseUrl + "pokemon/") {

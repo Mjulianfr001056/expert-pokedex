@@ -1,12 +1,11 @@
 package com.example.library.core.domain.usecase
 
 import androidx.paging.PagingData
-import com.example.library.core.data.PokemonRepository
-import com.example.library.core.domain.model.Pokemon
 import com.example.library.core.Error
 import com.example.library.core.Result
+import com.example.library.core.data.PokemonRepository
+import com.example.library.core.domain.model.Pokemon
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.distinctUntilChanged
 
 class PokemonUseCaseImpl(
     private val repository: PokemonRepository,

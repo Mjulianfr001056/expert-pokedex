@@ -1,9 +1,11 @@
 [versions]
+#noinspection AndroidGradlePluginVersion,AndroidGradlePluginVersion,AndroidGradlePluginVersion
 agp = "8.8.0"
 coilCompose = "3.1.0"
 featureDeliveryKtx = "2.1.0"
 koinAndroidxCompose = "4.0.2"
 kotlin = "2.0.0"
+#noinspection GradleDependency
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -11,13 +13,19 @@ espressoCore = "3.6.1"
 kotlinxSerializationJson = "1.8.0"
 ktor = "3.1.0"
 lifecycleRuntimeKtx = "2.8.7"
+#noinspection GradleDependency
 activityCompose = "1.10.0"
+#noinspection GradleDependency
 composeBom = "2024.04.01"
+#noinspection GradleDependency
 lifecycleViewmodelCompose = "2.8.5"
 loggingAndroid = "1.5.0"
+#noinspection GradleDependency
 navigationCompose = "2.8.7"
+#noinspection GradleDependency
 navigationTesting = "2.8.7"
 pagingRuntime = "3.3.6"
+#noinspection GradleDependency,GradleDependency,GradleDependency,GradleDependency
 roomRuntime = "2.6.1"
 ksp = "2.0.0-1.0.24"
 appcompat = "1.7.0"

@@ -2,13 +2,12 @@ package com.example.dfm.favorite.presentation.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.library.core.domain.model.Pokemon
 import com.example.dfm.favorite.domain.usecase.FavoritePokemonUseCase
+import com.example.library.core.domain.model.Pokemon
 import com.example.library.core.domain.usecase.PokemonUseCase
-import com.example.library.core.ui.UiState
 import com.example.library.core.onError
 import com.example.library.core.onSuccess
-import kotlinx.coroutines.coroutineScope
+import com.example.library.core.ui.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest

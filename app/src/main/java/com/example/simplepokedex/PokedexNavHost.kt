@@ -3,7 +3,6 @@ package com.example.simplepokedex
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext

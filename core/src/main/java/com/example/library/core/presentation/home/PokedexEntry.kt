@@ -1,5 +1,6 @@
 package com.example.library.core.presentation.home
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,6 +25,7 @@ import com.example.library.core.domain.model.Pokemon
 import com.example.library.core.presentation.TypeBadge
 import com.example.library.core.util.toProperString
 
+@SuppressLint("DefaultLocale")
 @Composable
 fun PokedexEntry(
     pokemon: Pokemon,

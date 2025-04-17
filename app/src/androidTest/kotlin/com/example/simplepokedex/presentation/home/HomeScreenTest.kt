@@ -1,14 +1,5 @@
 package com.example.simplepokedex.presentation.home
 
-import androidx.activity.ComponentActivity
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.navigation.compose.ComposeNavigator
-import androidx.navigation.testing.TestNavHostController
-import com.example.library.core.ui.theme.SimplePokedexTheme
-import org.junit.Before
-import org.junit.Rule
-
 //class HomeScreenTest{
 //    @get:Rule
 //    val composeTestRule = createAndroidComposeRule<ComponentActivity>()
