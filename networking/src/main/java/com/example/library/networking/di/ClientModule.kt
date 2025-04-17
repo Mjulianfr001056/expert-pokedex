@@ -9,6 +9,7 @@ import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import okhttp3.CertificatePinner
 import org.koin.dsl.module
 import org.lighthousegames.logging.logging
 
@@ -19,9 +20,20 @@ private val logLevel = when (BuildConfig.BUILD_TYPE) {
 
 internal val clientModule = module {
     single<HttpClient> {
-        val engine = OkHttp.create()
+        val hostname = "pokeapi.co"
+        val certificatePinner = CertificatePinner.Builder()
+            .add(hostname, "sha256/HalE3pYIF9UcO2Kezl94iZ9gdnC6nVMZoT0IYqhPBHM=")
+            .add(hostname, "sha256/kIdp6NNEd8wsugYyyIYFsi1ylMCED3hZbSR8ZFsa/A4=")
+            .add(hostname, "sha256/mEflZT5enoR1FuXLgYYGqnVEoZvmf9c2bVBpiOjYQ0c=")
+            .build()
 
-        HttpClient(engine){
+        HttpClient(OkHttp){
+            engine {
+                preconfigured = okhttp3.OkHttpClient.Builder()
+                    .certificatePinner(certificatePinner)
+                    .build()
+            }
+
             install(Logging) {
                 level = logLevel
                 logger = object : Logger {
