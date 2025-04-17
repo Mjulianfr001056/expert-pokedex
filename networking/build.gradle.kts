@@ -32,6 +32,18 @@ android {
         defaultConfig {
             buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
         }
+
+        create("obfuscatedDebug") {
+            initWith(getByName("release"))
+
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+
+            signingConfig = signingConfigs.getByName("debug")
+        }
+
         debug {
             isMinifyEnabled = false
         }

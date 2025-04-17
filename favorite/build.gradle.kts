@@ -13,12 +13,13 @@ android {
     }
 
     buildTypes {
+        create("obfuscatedDebug") {
+            initWith(getByName("release"))
+            isDebuggable = false
+        }
+
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
         }
     }
     compileOptions {

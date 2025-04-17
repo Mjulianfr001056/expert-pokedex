@@ -16,6 +16,17 @@ android {
     }
 
     buildTypes {
+        create("obfuscatedDebug") {
+            initWith(getByName("release"))
+
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+
+            signingConfig = signingConfigs.getByName("debug")
+        }
+
         release {
             isMinifyEnabled = false
             proguardFiles(
