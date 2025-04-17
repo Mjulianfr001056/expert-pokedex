@@ -100,4 +100,7 @@ dependencies {
 
     //Dfm
     implementation(libs.feature.delivery.ktx)
+
+    //LeakCanary
+    debugImplementation (libs.leakcanary.android)
 }
