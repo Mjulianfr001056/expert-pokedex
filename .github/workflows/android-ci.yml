@@ -28,7 +28,7 @@ jobs:
         run: ./gradlew androidDependencies
 
       - name: Run Build
-        run: ./gradlew build
+        run: ./gradlew assembleObfuscatedDebug
 
       - name: Run Unit Tests
         run: ./gradlew test
@@ -52,4 +52,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: app-debug-apk
-          path: app/build/outputs/apk/debug/
+          path: app/build/outputs/apk/obfuscatedDebug/
