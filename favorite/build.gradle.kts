@@ -13,6 +13,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            isDebuggable = false
+        }
+
         create("obfuscatedDebug") {
             initWith(getByName("release"))
             isDebuggable = false
