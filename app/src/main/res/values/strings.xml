@@ -3,4 +3,5 @@
     <string name="title_johto">Johto</string>
     <string name="title_favorite">Favorite</string>
     <string name="title_activity_main">MainActivity</string>
+    <bool name="leak_canary_allow_in_non_debuggable_build">true</bool>
 </resources>

@@ -21,3 +21,85 @@
 #-renamesourcefileattribute SourceFile
 -keep class com.example.library.** { *; }
 -keep interface com.example.library.** { *; }
+
+##############################################
+# KOTLIN STANDARD + REFLECTION
+##############################################
+-keep class kotlin.** { *; }
+-keepclassmembers class ** {
+    @kotlin.Metadata *;
+}
+-dontwarn kotlin.**
+-dontwarn kotlinx.coroutines.**
+
+##############################################
+# KOIN (Dependency Injection)
+##############################################
+-keep class org.koin.** { *; }
+-keep class *.Module
+-keepclassmembers class * {
+    public <init>(...);
+}
+-dontwarn org.koin.**
+
+##############################################
+# ROOM (Database ORM)
+##############################################
+-keep class androidx.room.** { *; }
+-keepclassmembers class * {
+    @androidx.room.** <methods>;
+}
+-dontwarn androidx.room.**
+
+##############################################
+# SQLCIPHER (Encrypted DB)
+##############################################
+-keep class net.sqlcipher.** { *; }
+-dontwarn net.sqlcipher.**
+
+##############################################
+# KTOR (Networking)
+##############################################
+-keep class io.ktor.** { *; }
+-dontwarn io.ktor.**
+
+-keep class kotlinx.serialization.** { *; }
+-keep @kotlinx.serialization.Serializable class ** { *; }
+-dontwarn kotlinx.serialization.**
+
+##############################################
+# COIL (Image Loading) - Version 3+
+##############################################
+
+-keep class coil3.** { *; }
+-keepclassmembers class coil3.** {
+    public <init>(...);
+}
+-keepnames class coil3.** { *; }
+
+-keep class coil3.PlatformContextKt { *; }
+
+-dontwarn coil3.**
+
+##############################################
+# JETPACK NAVIGATION & COMPOSE
+##############################################
+-keep class androidx.navigation.** { *; }
+-dontwarn androidx.navigation.**
+
+-keep class androidx.compose.** { *; }
+-dontwarn androidx.compose.**
+
+-keep class androidx.ui.** { *; }
+-dontwarn androidx.ui.**
+
+##############################################
+# LEAKCANARY
+##############################################
+-dontwarn com.squareup.leakcanary.**
+
+##############################################
+# LOGGING (org.lighthousegames)
+##############################################
+-keep class org.lighthousegames.logging.** { *; }
+-dontwarn org.lighthousegames.logging.**
